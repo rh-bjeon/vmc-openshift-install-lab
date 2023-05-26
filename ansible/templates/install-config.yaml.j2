@@ -13,6 +13,6 @@ controlPlane:
 metadata:
   name: {{ guid }}
 platform:
-  none:
+  none: {}
 pullSecret: {{ ocp4_pull_secret | to_json }}
 sshKey: '{{ sshKey_content }}'
