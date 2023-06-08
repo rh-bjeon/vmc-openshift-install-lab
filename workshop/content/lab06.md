@@ -16,7 +16,7 @@ cat >merge-bootstrap.ign <<EOF
     "config": {
       "merge": [
         {
-          "source": "http://192.168.${SEGMENT}.10:81/bootstrap.ign",
+          "source": "http://192.168.${SEGMENT}.10:80/bootstrap.ign",
           "verification": {}
         }
       ]
