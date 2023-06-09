@@ -132,21 +132,4 @@
       name: httpd
       state: started
       enabled: true
-
-- name: Create OpenShift Installation Directory and Prereqs
-  hosts: localhost
-  become: true
-  become_user: "{{ student_name }}"
-  vars_files:
-  - vars.yml
-  tasks:
-  - name: Create /home/{{ student_name }}/ocpinstall/install/
-    ansible.builtin.file:
-      path: /home/{{ student_name }}/ocpinstall/install/
-      state: directory
-
-  - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
-    ansible.builtin.openssh_keypair:
-      path: /home/{{ student_name }}/ocpinstall/install/id_rsa
-    register: keypair
     
