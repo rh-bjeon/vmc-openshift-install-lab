@@ -5,6 +5,15 @@
   vars_files:
   - vars.yml
   tasks:
+  - name: Create /home/{{ student_name }}/ocpinstall/install/
+    ansible.builtin.file:
+      path: /home/{{ student_name }}/ocpinstall/install/
+      state: directory
+
+  - name: Generate an OpenSSH keypair with the default values (4096 bits, rsa)
+    ansible.builtin.openssh_keypair:
+      path: /home/{{ student_name }}/ocpinstall/install/id_rsa
+    register: keypair
   - name: Generate install-config.yaml
     ansible.builtin.template:
       src: install-config.yaml.j2
