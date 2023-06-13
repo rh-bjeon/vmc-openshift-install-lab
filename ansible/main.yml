@@ -23,7 +23,6 @@
       immediate: yes
       state: enabled
     loop:
-    - 80/tcp
     - 8080/tcp
     - 22623/tcp
     - 6443/tcp
@@ -65,7 +64,7 @@
       setype: http_port_t
       state: present
 
-  - name: Allow HAproxy to listen on tcp port 6443
+  - name: Allow HAproxy to listen on tcp port 1936
     ansible.builtin.seport:
       ports: 1936
       proto: tcp
@@ -125,7 +124,7 @@
     ansible.builtin.replace:
       path: /etc/httpd/conf/httpd.conf
       regexp: 'Listen 80'
-      replace: "Listen 192.168.{{ hostname_output.stdout }}.10:80"
+      replace: "Listen 192.168.{{ hostname_output.stdout }}.10:8080"
 
   - name: Enable httpd
     ansible.builtin.service:
