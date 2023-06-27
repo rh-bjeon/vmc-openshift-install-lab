@@ -28,6 +28,7 @@
     - 6443/tcp
     - 5000/tcp
     - 1936/tcp
+    - 8443/tcp
 
   - name: Install required software
     ansible.builtin.yum:
