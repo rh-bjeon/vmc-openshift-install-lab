@@ -12,7 +12,7 @@ export CONFIG_DATA=$(cat ~/ocpinstall/install/worker.ign | base64 -w0)
 
 # Get IP address and nameserver
 export SEGMENT=$(hostname -I|cut -d. -f3)
-export IPCFG="ip=192.168.${SEGMENT}.200::192.168.${SEGMENT}.1:255.255.255.0:::none nameserver=192.168.${SEGMENT}.10"
+export IPCFG="ip=192.168.${SEGMENT}.201::192.168.${SEGMENT}.1:255.255.255.0:::none nameserver=192.168.${SEGMENT}.10"
 
 # Update Settings, and allocate 2CPU and 8GB RAM
 govc vm.change -vm=worker0.%GUID%.dynamic.opentlc.com \
@@ -35,7 +35,7 @@ export CONFIG_DATA=$(cat ~/ocpinstall/install/worker.ign | base64 -w0)
 
 # Get IP address and nameserver
 export SEGMENT=$(hostname -I|cut -d. -f3)
-export IPCFG="ip=192.168.${SEGMENT}.201::192.168.${SEGMENT}.1:255.255.255.0:::none nameserver=192.168.${SEGMENT}.10"
+export IPCFG="ip=192.168.${SEGMENT}.202::192.168.${SEGMENT}.1:255.255.255.0:::none nameserver=192.168.${SEGMENT}.10"
 
 # Update Settings, and allocate 2CPU and 8GB RAM
 govc vm.change -vm=worker1.%GUID%.dynamic.opentlc.com \
