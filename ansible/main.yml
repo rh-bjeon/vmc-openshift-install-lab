@@ -26,8 +26,7 @@
     - 8080/tcp
     - 22623/tcp
     - 6443/tcp
-    - 5000/tcp
-    - 1936/tcp
+    - 8443/tcp
 
   - name: Install required software
     ansible.builtin.yum:
@@ -60,13 +59,6 @@
   - name: Allow HAproxy to listen on tcp port 6443
     ansible.builtin.seport:
       ports: 6443
-      proto: tcp
-      setype: http_port_t
-      state: present
-
-  - name: Allow HAproxy to listen on tcp port 1936
-    ansible.builtin.seport:
-      ports: 1936
       proto: tcp
       setype: http_port_t
       state: present
