@@ -67,32 +67,32 @@ frontend machineconfig
 frontend tlsrouter
     bind 192.168.{{ labenv_segment }}.10:443
     default_backend secure
-# frontend insecurerouter
-#     bind 192.168.{{ labenv_segment }}.10:80
-#     default_backend insecure
+frontend insecurerouter
+    bind 192.168.{{ labenv_segment }}.10:80
+    default_backend insecure
 #---------------------------------------------------------------------
 # static backend
 #---------------------------------------------------------------------
 backend controlplaneapi
     balance source
     server bootstrap 192.168.{{ labenv_segment }}.99:6443 check
-    server master0 192.168.{{ labenv_segment }}.100:6443 check
-    server master1 192.168.{{ labenv_segment }}.101:6443 check
-    server master2 192.168.{{ labenv_segment }}.102:6443 check
+    server master0 192.168.{{ labenv_segment }}.101:6443 check
+    server master1 192.168.{{ labenv_segment }}.102:6443 check
+    server master2 192.168.{{ labenv_segment }}.103:6443 check
 backend controlplanemc
     balance source
     server bootstrap 192.168.{{ labenv_segment }}.99:22623 check
-    server master0 192.168.{{ labenv_segment }}.100:22623 check
     server master1 192.168.{{ labenv_segment }}.101:22623 check
     server master2 192.168.{{ labenv_segment }}.102:22623 check
+    server master3 192.168.{{ labenv_segment }}.103:22623 check
 backend secure
     balance source
-    server worker0 192.168.{{ labenv_segment }}.200:443 check
     server worker1 192.168.{{ labenv_segment }}.201:443 check
-#    server worker2 192.168.{{ labenv_segment }}.202:443 check
+    server worker2 192.168.{{ labenv_segment }}.202:443 check
+    server worker3 192.168.{{ labenv_segment }}.203:443 check
 
-# backend insecure
-#     balance source
-#     server worker0 192.168.{{ labenv_segment }}.200:80 check
-#     server worker1 192.168.{{ labenv_segment }}.201:80 check
-#     server worker2 192.168.{{ labenv_segment }}.202:80 check
+backend insecure
+     balance source
+     server worker1 192.168.{{ labenv_segment }}.201:80 check
+     server worker2 192.168.{{ labenv_segment }}.202:80 check
+     server worker3 192.168.{{ labenv_segment }}.203:80 check
