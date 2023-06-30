@@ -21,5 +21,14 @@ networking:
   - 172.30.0.0/16
 platform:
   none: {}
-pullSecret: {{ ocp4_pull_secret | to_json }}
+pullSecret: {{ ocp4_pull_secret_private }}
 sshKey: '{{ sshKey_content }}'
+additionalTrustBundle: |
+/data/initquay/quay-config/ssl.cert
+imageContentSources:
+  - mirrors:
+    - bastion.{{ guid }}.dynamic.opentlc.com:8443/openshift/release
+    source: quay.io/openshift-release-dev/ocp-v4.0-art-dev
+  - mirrors:
+    - bastion.{{ guid }}.dynamic.opentlc.com:8443/openshift/release-images
+    source: quay.io/openshift-release-dev/ocp-release
