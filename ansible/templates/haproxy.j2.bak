@@ -1,0 +1,46 @@
+global
+  log         127.0.0.1 local2
+  pidfile     /var/run/haproxy.pid
+  maxconn     4000
+  daemon
+defaults
+  mode                    http
+  log                     global
+  option                  dontlognull
+  option http-server-close
+  option                  redispatch
+  retries                 3
+  timeout http-request    10s
+  timeout queue           1m
+  timeout connect         10s
+  timeout client          1m
+  timeout server          1m
+  timeout http-keep-alive 10s
+  timeout check           10s
+  maxconn                 3000
+listen api-server-6443
+  bind *:6443
+  mode tcp
+  server bootstrap 192.168.{{ labenv_segment }}.99:6443 check inter 1s backup
+  server master0 192.168.{{ labenv_segment }}.101:6443 check inter 1s
+  server master1 192.168.{{ labenv_segment }}.102:6443 check inter 1s
+  server master2 192.168.{{ labenv_segment }}.103:6443 check inter 1s
+listen machine-config-server-22623
+  bind *:22623
+  mode tcp
+  server bootstrap 192.168.{{ labenv_segment }}.99:22623 check inter 1s backup
+  server master1 192.168.{{ labenv_segment }}.101:22623 check inter 1s
+  server master2 192.168.{{ labenv_segment }}.102:22623 check inter 1s
+  server master3 192.168.{{ labenv_segment }}.103:22623 check inter 1s
+#listen ingress-router-443
+#  bind *:443
+#  mode tcp
+#  server worker1 192.168.{{ labenv_segment }}.201:443 check
+#  server worker2 192.168.{{ labenv_segment }}.202:443 check
+#  server worker3 192.168.{{ labenv_segment }}.203:443 check
+#listen ingress-router-443
+#  bind *:443
+#  mode tcp
+#  server worker1 192.168.{{ labenv_segment }}.201:80 check
+#  server worker2 192.168.{{ labenv_segment }}.202:80 check
+#  server worker3 192.168.{{ labenv_segment }}.203:80 check
