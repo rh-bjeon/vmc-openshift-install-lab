@@ -8,20 +8,21 @@ $TTL 1D
 $ORIGIN         dynamic.opentlc.com.
 dynamic.opentlc.com.            IN      NS      dns.dynamic.opentlc.com.
 dns                     IN      A       192.168.{{ labenv_segment }}.10
-*.apps.{{ guid }}     IN    A    192.168.{{ labenv_segment }}.10
 ns1.{{ guid }}     IN    A    192.168.{{ labenv_segment }}.10
+;
 bastion.{{ guid }}     IN    A    192.168.{{ labenv_segment }}.10
+*.apps.{{ guid }}     IN    A    192.168.{{ labenv_segment }}.10
 ;
 api.{{ guid }}     IN    A    192.168.{{ labenv_segment }}.10
 api-int.{{ guid }}     IN    A    192.168.{{ labenv_segment }}.10
 ;
 bootstrap.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.99
 ;
-master0.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.100
-master1.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.101
-master2.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.102
+master0.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.101
+master1.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.102
+master2.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.103
 ;
-worker0.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.200
-worker1.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.201
-worker2.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.202
+worker0.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.201
+worker1.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.202
+worker2.{{ guid }}    IN    A    192.168.{{ labenv_segment }}.203
 
